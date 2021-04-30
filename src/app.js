@@ -14,7 +14,7 @@ discordClient.commands = new Discord.Collection();
 
 // Check for commands in our commands folder
 const commandFiles = fs
-  .readdirSync("./commands")
+  .readdirSync("./src/commands")
   .filter((file) => file.endsWith(".js"));
 
 // For each command found, register it as a command

@@ -12,17 +12,18 @@ module.exports.languageDetection = async (message) => {
 
     // If language is detected and is Trukish
     if (language.length > 0 && language[0].language === "tr") {
-
       // Load our allowed words from file
-      const allowedList = fs.readFileSync("./files/allowed_list.txt", 'utf8').split('\r\n');
-      
+      const allowedList = fs
+        .readFileSync("./src/files/allowed_list.txt", "utf8")
+        .split("\r\n");
+
       // TEMP: Rewrite required later. Loops through each word in list and checks if appears
       let wordCheck = false;
-      allowedList.forEach(word => {
-        if(message.content.toLowerCase().includes(word)) wordCheck = true;
+      allowedList.forEach((word) => {
+        if (message.content.toLowerCase().includes(word)) wordCheck = true;
       });
 
-      if(!wordCheck) {
+      if (!wordCheck) {
         message.delete();
         message
           .reply(
