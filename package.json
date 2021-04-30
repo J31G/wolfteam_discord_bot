@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "detectlanguage": "^2.1.0",
     "discord.js": "^12.5.3",
     "dotenv": "^8.2.0"
   },

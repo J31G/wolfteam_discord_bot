@@ -1,10 +1,14 @@
+const { languageDetection } = require("./languageDetectionHandler");
+
 module.exports.onDiscordMessage = (discordClient, message) => {
-  // Check if message starts with our prefix or is another bot. If so, quit program
-  if (
-    !message.content.startsWith(process.env.DISCORD_PREFIX) ||
-    message.author.bot
-  )
-    return;
+  // Check if message is from a bot (Important to stop loops)
+  if (message.author.bot) return;
+
+  // Language Detection
+  languageDetection(message);
+
+  // Anything below will be ignored without prefix
+  if (!message.content.startsWith(process.env.DISCORD_PREFIX)) return;
 
   // Delete message to keep tiny
   message.delete();
