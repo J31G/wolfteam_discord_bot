@@ -1,5 +1,5 @@
 .env
 node_modules/
-logs/*
+src/logs/*
 
-!logs/.gitkeep
+!src/logs/.gitkeep
