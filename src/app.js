@@ -4,6 +4,9 @@ require("dotenv").config();
 
 // Local Modules
 const { onDiscordReady } = require("./modules/onDiscordReady");
+const {
+  onDiscordInteractionCreate,
+} = require("./modules/onDiscordInteractionCreate");
 const { onDiscordMessage } = require("./modules/onDiscordMessage");
 
 // Discord setup
@@ -25,7 +28,12 @@ commandFiles.forEach((file) => {
 });
 
 // On "ready" handler "./modules/onDiscordReady"
-discordClient.once("ready", () => onDiscordReady(discordClient));
+discordClient.on("ready", () => onDiscordReady(discordClient));
+
+// On "INTERACTION_CREATE" handler "./modules/onDiscordInteractionCreate"
+discordClient.ws.on("INTERACTION_CREATE", async (interaction) =>
+  onDiscordInteractionCreate(discordClient, interaction)
+);
 
 // On "message" handler "./modules/onDiscordMessage"
 discordClient.on("message", (message) =>
