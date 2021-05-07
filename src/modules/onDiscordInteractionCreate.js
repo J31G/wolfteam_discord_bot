@@ -7,17 +7,8 @@ module.exports.onDiscordInteractionCreate = async (
   const command = interaction.data.name.toLowerCase();
   const args = interaction.data.options;
 
-  /* eslint-disable no-nested-ternary */
-  const user =
-    args === undefined
-      ? ""
-      : args[0].value.match(/^<@!?(\d+)>$/)
-      ? `${args[0].value} check out the below: \n\n`
-      : "";
-  /* eslint-enable no-nested-ternary */
-
   // Helper function to send API messages
-  async function createAPIMessage(message, content) {
+  const createAPIMessage = async (message, content) => {
     const apiMessage = await Discord.APIMessage.create(
       discordClient.channels.resolve(message.channel_id),
       content
@@ -30,6 +21,16 @@ module.exports.onDiscordInteractionCreate = async (
 
   if (command === "download") {
     const year = new Date();
+
+    // Checks to see if user is within first arg, then if they are in value format
+    /* eslint-disable no-nested-ternary */
+    const user =
+      args === undefined
+        ? ""
+        : args[0].value.match(/^<@!?(\d+)>$/)
+        ? `${args[0].value} check out the below: \n\n`
+        : "";
+    /* eslint-enable no-nested-ternary */
 
     const embed = new Discord.MessageEmbed()
       .setColor(3447003)
