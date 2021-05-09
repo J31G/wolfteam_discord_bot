@@ -4,7 +4,7 @@ require('dotenv').config();
 module.exports.onDiscordReady = (client) => {
   const wokClient = new WOKCommands(client, {
     commandsDir: 'commands',
-    testServers: ['825352046605238352'],
+    testServers: ['825352046605238352', '322328346799243264'],
     dbOptions: {
       keepAlive: true,
       useNewUrlParser: true,
