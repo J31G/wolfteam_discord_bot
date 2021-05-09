@@ -15,4 +15,5 @@ module.exports.onDiscordReady = (client) => {
   });
   wokClient.setDefaultPrefix(process.env.DISCORD_PREFIX);
   wokClient.setMongoPath(process.env.MONGO_URI);
+  wokClient.setBotOwner('333726780118663178');
 };
