@@ -27,5 +27,16 @@ module.exports.onDiscordReady = (client) => {
         name: 'Fun & Games',
         emoji: '🎮',
       },
+      {
+        name: 'Development',
+        emoji: '💻',
+      },
+      {
+        name: 'Configuration',
+        hidden: true,
+      },
+      {
+        name: 'Help',
+      },
     ]);
 };
