@@ -13,7 +13,19 @@ module.exports.onDiscordReady = (client) => {
       useFindAndModify: false,
     },
   });
-  wokClient.setDefaultPrefix(process.env.DISCORD_PREFIX);
-  wokClient.setMongoPath(process.env.MONGO_URI);
-  wokClient.setBotOwner('333726780118663178');
+  // Some extra config which I'll move into the json later
+  wokClient
+    .setDefaultPrefix(process.env.DISCORD_PREFIX)
+    .setMongoPath(process.env.MONGO_URI)
+    .setBotOwner('333726780118663178')
+    .setCategorySettings([
+      {
+        name: 'General',
+        emoji: '📜',
+      },
+      {
+        name: 'Fun & Games',
+        emoji: '🎮',
+      },
+    ]);
 };
