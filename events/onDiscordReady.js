@@ -30,13 +30,12 @@ module.exports.onDiscordReady = (client) => {
       {
         name: 'Development',
         emoji: '💻',
-      },
-      {
-        name: 'Configuration',
         hidden: true,
       },
       {
-        name: 'Help',
+        name: 'Configuration',
+        emoji: '⚙',
+        hidden: true,
       },
     ]);
 };
