@@ -20,6 +20,9 @@ module.exports = {
       if (message) return message.reply('Invalid syntax, please use `wt.delete confirm`');
       return 'Invalid syntax, please use `wt.delete confirm`';
     }
+    // Remove user's message
+    if(message) message.delete();
+
     const discordUserId = interaction ? interaction.member.user.id : message.author.id;
     const userFound = await playerDB.exists({ discord_user_id: discordUserId });
 
@@ -38,11 +41,11 @@ module.exports = {
     }
 
     // Give user tournament role
-    const server = await client.guilds.cache.get(interaction
-      ? interaction.guild_id : message.channel.guild.id);
-    const tournamentRole = await server.roles.cache.find((role) => role.name === 'Tournament participant');
+    const guild = await client.guilds.cache.get('322328346799243264');
+    const tournamentRole = await guild.roles.cache.get('839777798884294686');
+    const userRole = await guild.members.fetch(discordUserId);
     // eslint-disable-next-line no-console
-    server.members.cache.get(discordUserId).roles.remove(tournamentRole.id).catch(console.error);
+    userRole.roles.remove(tournamentRole.id).catch(console.error);
 
     const embed = new MessageEmbed()
       .setTitle('Registration Removed ☹')

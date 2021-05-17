@@ -10,28 +10,28 @@
 <body>
   <div class="container">
     <table class="table table-striped table-responsive">
-        <thead>
+      <thead>
+        <tr>
+          <th>Discord ID</th>
+          <th>Discord Username</th>
+          <th>In-Game Name</th>
+          <th>Login Name</th>
+          <th>Participant ID</th>
+          <th>Language</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% playerData.forEach(player => { %>
           <tr>
-            <th>Discord ID</th>
-            <th>Discord Username</th>
-            <th>In-Game Name</th>
-            <th>Login Name</th>
-            <th>Participant ID</th>
-            <th>Language</th>
+            <td><%= player.discord_user_id %></td>
+            <td><%= player.discord_username %></td>
+            <td><%= player.ingame_name %></td>
+            <td><%= player.login_name %></td>
+            <td><%= player.participant_id %></td>
+            <td><%= player.language %></td>
           </tr>
-        </thead>
-        <tbody>
-          <% playerData.forEach(player => { %>
-            <tr>
-              <td><%= player.discord_user_id %></td>
-              <td><%= player.discord_username %></td>
-              <td><%= player.ingame_name %></td>
-              <td><%= player.login_name %></td>
-              <td><%= player.participant_id %></td>
-              <td><%= player.language %></td>
-            </tr>
-          <% }) %>
-        </tbody>
+        <% }) %>
+      </tbody>
     </table>
   </div>
 </body>

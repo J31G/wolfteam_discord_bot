@@ -52,12 +52,16 @@ module.exports = {
       language: 'FR',
     });
 
-    // Give user tournament role
-    const server = await client.guilds.cache.get(interaction
-      ? interaction.guild_id : message.channel.guild.id);
-    const tournamentRole = await server.roles.cache.find((role) => role.name === 'Tournament participant');
-    // eslint-disable-next-line no-console
-    server.members.cache.get(discordUserId).roles.add(tournamentRole.id).catch(console.error);
+    try {
+      // Give user tournament role
+      const guild = await client.guilds.cache.get('322328346799243264');
+      const tournamentRole = await guild.roles.cache.get('839777798884294686');
+      const userRole = await guild.members.fetch(discordUserId);
+      userRole.roles.add(tournamentRole.id);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
 
     // Create a discord embed message
     const embed = new MessageEmbed()
