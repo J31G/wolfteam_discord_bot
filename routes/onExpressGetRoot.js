@@ -12,7 +12,7 @@ module.exports.onExpressGetRoot = async (req, res) => {
 
   // Check if basic auth is correct
   if (!(username === process.env.BASIC_AUTH_USERNAME
-    && password === process.env.BASIC_AUTH_USERNAME)) return reject();
+    && password === process.env.BASIC_AUTH_PASSWORD)) return reject();
 
   // If correct, find player data from db and send over our page
   const playerData = await playerDB.find();
