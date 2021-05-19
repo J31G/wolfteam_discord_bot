@@ -22,8 +22,12 @@ const app = express();
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Express routes found in ./routes/*
 app.get('/', async (req, res) => onExpressGetRoot(req, res));
 app.post('/updatePlayer', async (req, res) => onExpressPostUpdatePlayer(req, res, client));
+
+// HTTP port for our express app
 app.listen(process.env.PORT || 5000);
 
 // Login in our Discord bot
