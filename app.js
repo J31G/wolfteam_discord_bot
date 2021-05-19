@@ -5,7 +5,8 @@ require('dotenv').config();
 // Local Modules
 const { onDiscordReady } = require('./events/onDiscordReady');
 const { onDiscordMessage } = require('./events/onDiscordMessage');
-const playerDB = require('./models/player');
+const { onExpressPostUpdatePlayer } = require('./events/onExpressPostUpdatePlayer');
+const { onExpressGetRoot } = require('./events/onExpressGetRoot');
 
 // Discord Client
 const client = new DiscordJS.Client({
@@ -19,10 +20,10 @@ client.on('message', (message) => onDiscordMessage(client, message));
 // Express Setup
 const app = express();
 app.set('view engine', 'ejs');
-app.get('/', async (req, res) => {
-  const playerData = await playerDB.find();
-  res.render('index', { playerData });
-});
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.get('/', async (req, res) => onExpressGetRoot(req, res));
+app.post('/updatePlayer', async (req, res) => onExpressPostUpdatePlayer(req, res, client));
 app.listen(process.env.PORT || 5000);
 
 // Login in our Discord bot

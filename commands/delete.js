@@ -21,7 +21,7 @@ module.exports = {
       return 'Invalid syntax, please use `wt.delete confirm`';
     }
     // Remove user's message
-    if(message) message.delete();
+    if (message) message.delete();
 
     const discordUserId = interaction ? interaction.member.user.id : message.author.id;
     const userFound = await playerDB.exists({ discord_user_id: discordUserId });
@@ -40,7 +40,7 @@ module.exports = {
       console.error(error);
     }
 
-    // Give user tournament role
+    // Remove user tournament role
     const guild = await client.guilds.cache.get('322328346799243264');
     const tournamentRole = await guild.roles.cache.get('839777798884294686');
     const userRole = await guild.members.fetch(discordUserId);

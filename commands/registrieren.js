@@ -37,7 +37,7 @@ module.exports = {
       api_key: process.env.CHALLONGE_API,
       participant: {
         name: `${args[0]} (${discordUsername})`,
-        misc: 'discordUserId',
+        misc: discordUserId,
       },
     });
 
