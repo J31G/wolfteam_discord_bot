@@ -12,9 +12,10 @@ module.exports = {
   category: 'General',
   callback: async ({ args, text }) => {
     const userText = text.substr(args[0].length).trim();
-    const data = await translate(userText, args[0]);
+    const selectedLanguage = args[0].toUpperCase().trim();
+    const data = await translate(userText, selectedLanguage);
     const embed = new MessageEmbed()
-      .setTitle(`Translation ${data.detected_source_language} to ${args[0]}`)
+      .setTitle(`Translation: ${data.detected_source_language} to ${selectedLanguage}`)
       .setDescription(data.text);
 
     return embed;
