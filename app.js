@@ -5,8 +5,8 @@ require('dotenv').config();
 // Local Modules
 const { onDiscordReady } = require('./events/onDiscordReady');
 const { onDiscordMessage } = require('./events/onDiscordMessage');
-const { onExpressPostUpdatePlayer } = require('./events/onExpressPostUpdatePlayer');
-const { onExpressGetRoot } = require('./events/onExpressGetRoot');
+const { onExpressPostUpdatePlayer } = require('./routes/onExpressPostUpdatePlayer');
+const { onExpressGetRoot } = require('./routes/onExpressGetRoot');
 
 // Discord Client
 const client = new DiscordJS.Client({
