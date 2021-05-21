@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfTeam Tournament: Matches</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-100">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>WolfTeam Tournament Matches</h5> <span>Click on the buttons to either edit or delete the records</span>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="players-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Player 1</th>
+                                        <th>VS</th>
+                                        <th>Player 2</th>
+                                        <th>Room Name</th>
+                                        <th>Password</th>
+                                        <th>Map</th>
+                                        <th>Match Time</th>
+                                        <th>Round</th>
+                                        <th>State</th>
+                                        <th>Send to Discord</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% matchData.forEach(match => { %>
+                                    <tr>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.id %></span></th>
+                                        <td class="tabledit-view-mode" id="<%= match.match.player1_id %>">
+                                          <span class="tabledit-span"><%= playerData.find(player => player.participant_id === match.match.player1_id)?.ingame_name %></span>
+                                        </td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span">VS</span></td>
+                                        <td class="tabledit-view-mode" id="<%= match.match.player2_id %>">
+                                          <span class="tabledit-span"><%= playerData.find(player => player.participant_id === match.match.player2_id)?.ingame_name %></span>
+                                        </td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.room_name %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.room_password %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.map %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.match_time %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.round %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.state %></span></td>
+                                        <td><button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscord(this)"><span class="fas fa-paper-plane"></span></button></td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.rawgit.com/BluesatKV/jquery-tabledit/c1759e6c/jquery.tabledit.js"></script>
+    <script>
+        $(document).ready(() => {
+          $('#players-table').Tabledit({
+            url: '/updateMatch',
+            hideIdentifier: true,
+            escapehtml: true,
+            restoreButton: false,
+            deleteButton: false,
+            buttons: {
+              edit: {
+                class: 'btn btn-sm btn-secondary',
+                html: '<span class="fa fa-pencil-alt"></span>',
+                action: 'edit',
+              },
+            },
+            columns: {
+              identifier: [0, 'id'],
+              editable: [
+                [4, 'roomName', 'input'],
+                [5, 'roomPassword', 'input'],
+                [6, 'map', 'select', '{"Paien Lab":"Paien Lab","Arrival":"Arrival","Junk Field":"Junk Field"}'],
+                [7, 'matchTime', 'date'],
+                [9, 'matchState', 'select', '{"open":"open","closed":"closed","pending":"pending"}']
+              ]
+            },
+          });
+        });
+        const sendDiscord = (e) => {
+          const row = e.parentElement.parentElement;
+          $.post('/discordUpdate', { 
+            id: row.id, 
+            player1: row.children[1].id,
+            player2: row.children[3].id,
+          });
+        }
+    </script>
+</body>
+</html>
