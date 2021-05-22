@@ -52,7 +52,7 @@
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.match_time %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.round %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.state %></span></td>
-                                        <td><button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscord(this)"><span class="fas fa-paper-plane"></span></button></td>
+                                        <td style="text-align: center;"><button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscord(this)"><span class="fas fa-paper-plane"></span></button></td>
                                     </tr>
                                     <% }) %>
                                 </tbody>

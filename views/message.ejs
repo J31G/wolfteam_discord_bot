@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfTeam Tournament: Message</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-100">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>WolfTeam Tournament Message</h5> <span>Below you can send a message to a select channel and have it translated into multiple languages</span>
+                    </div>
+                    <div class="card-block">
+                      <form action="/discordMessage" method="post">
+
+                        <div class="form-group">
+                          <label for="channels">Channel</label>
+                          <select class="custom-select custom-select-lg mb-3" name="channel" id="channels">
+                            <% channelsData.forEach(channel => { %>
+                              <option value="<%= channel.id %>"><%= channel.name %></option>
+                            <% }); %>
+                          </select>
+                        </div>
+
+                        <div class="form-group">
+                          
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="english" type="checkbox" id="inlineCheckbox1" value="EN">
+                            <label class="form-check-label" for="inlineCheckbox1">English</label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="german" type="checkbox" id="inlineCheckbox2" value="DE">
+                            <label class="form-check-label" for="inlineCheckbox2">German</label>
+                          </div>
+
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" name="french" type="checkbox" id="inlineCheckbox3" value="FR">
+                            <label class="form-check-label" for="inlineCheckbox3">French</label>
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="title">Title</label>
+                          <input id="title" class="form-control" type="text" placeholder="Enter a title" name="title">
+                        </div>
+
+                        <div class="form-group">
+                          <label for="textarea">Message</label>
+                          <textarea class="form-control" id="textarea" rows="5" name="text"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                          <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.rawgit.com/BluesatKV/jquery-tabledit/c1759e6c/jquery.tabledit.js"></script>
+</body>
+</html>

@@ -20,5 +20,5 @@ module.exports.onExpressDiscordPost = async (req, res, client) => {
 
   client.channels.cache.get('843890744548261938').send(embed);
 
-  return res.redirect('/');
+  return res.redirect('/matches');
 };
