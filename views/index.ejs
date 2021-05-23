@@ -23,12 +23,13 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Discord ID</th>
+                                        <th style="display: none;">Discord ID</th>
                                         <th>Discord Username</th>
                                         <th>In-Game Name</th>
                                         <th>Login Name</th>
-                                        <th>Participant ID</th>
+                                        <th style="display: none;">Participant ID</th>
                                         <th>Seed</th>
+                                        <th>Account</th>
                                         <th>Language</th>
                                     </tr>
                                 </thead>
@@ -36,12 +37,13 @@
                                     <% playerData.forEach(player => { %>
                                     <tr>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player._id %></span></th>
-                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_user_id %></span></td>
+                                        <td style="display: none;" class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_user_id %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_username %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.ingame_name %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.login_name %></span></td>
-                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.participant_id %></span></td>
+                                        <td style="display: none;" class="tabledit-view-mode"><span class="tabledit-span"><%= player.participant_id %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.seed %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.account %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.language %></span></td>
                                     </tr>
                                     <% }) %>
@@ -86,7 +88,8 @@
                 [4, 'loginName', 'input'],
                 [5, 'participantID', 'number'],
                 [6, 'seed', 'number'],
-                [7, 'language', 'select', '{"EN":"EN","FR":"FR","DE":"DE","ES":"ES"}']
+                [7, 'account', 'select', '{"WTEvent1":"WTEvent1","WTEvent2":"WTEvent2","WTEvent3":"WTEvent3","WTEvent4":"WTEvent4","WTEvent5":"WTEvent5","WTEvent6":"WTEvent6","WTEvent7":"WTEvent7","WTEvent8":"WTEvent8","WTEvent9":"WTEvent9","WTEvent10":"WTEvent10","WTEvent11":"WTEvent11","WTEvent12":"WTEvent12","WTEvent13":"WTEvent13","WTEvent14":"WTEvent14","WTEvent15":"WTEvent15","WTEvent16":"WTEvent16","WTEvent17":"WTEvent17","WTEvent18":"WTEvent18","WTEvent19":"WTEvent19","WTEvent20":"WTEvent20","WTEvent21":"WTEvent21","WTEvent22":"WTEvent22","WTEvent23":"WTEvent23","WTEvent24":"WTEvent24","WTEvent25":"WTEvent25","WTEvent26":"WTEvent26","WTEvent27":"WTEvent27","WTEvent28":"WTEvent28","WTEvent29":"WTEvent29","WTEvent30":"WTEvent30","WTEvent31":"WTEvent31","WTEvent32":"WTEvent32"}'],
+                [8, 'language', 'select', '{"EN":"EN","FR":"FR","DE":"DE","ES":"ES"}']
               ]
             }
           });

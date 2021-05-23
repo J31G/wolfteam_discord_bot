@@ -29,6 +29,9 @@ const playerSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  account: {
+    type: String,
+  },
   registration_date: {
     type: Date,
     required: true,

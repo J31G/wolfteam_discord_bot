@@ -14,6 +14,7 @@ module.exports.onExpressPostUpdatePlayer = async (req, res) => {
         login_name: req.body.loginName,
         participant_id: req.body.participantID,
         seed: req.body.seed,
+        account: req.body.account,
         language: req.body.language,
       }, { upsert: true, useFindAndModify: false });
 
