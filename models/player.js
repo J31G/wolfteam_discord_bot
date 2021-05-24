@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const playerSchema = new mongoose.Schema({
   discord_user_id: {
-    type: Number,
+    type: String,
     required: true,
   },
   discord_username: {

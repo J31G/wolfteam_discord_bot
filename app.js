@@ -16,6 +16,7 @@ const { onExpressGetMessage } = require('./routes/onExpressGetMessage');
 // Discord Client
 const client = new DiscordJS.Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
+  ws: { intents: DiscordJS.Intents.PRIVILEDGED },
 });
 
 // Discord Events, found in ./events/*
