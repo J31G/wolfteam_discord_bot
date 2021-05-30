@@ -5,9 +5,11 @@ require('dotenv').config();
 // Local Modules
 const { onDiscordReady } = require('./events/onDiscordReady');
 const { onDiscordMessage } = require('./events/onDiscordMessage');
+const { onDiscordReactionAdd } = require('./events/onDiscordReactionAdd');
 const { onExpressPostUpdatePlayer } = require('./routes/onExpressPostUpdatePlayer');
 const { onExpressPostUpdateMatch } = require('./routes/onExpressPostUpdateMatch');
 const { onExpressDiscordPost } = require('./routes/onExpressPostDiscordPost');
+const { onExpressPostDiscordVote } = require('./routes/onExpressPostDiscordVote');
 const { onExpressPostDiscordMessage } = require('./routes/onExpressPostDiscordMessage');
 const { onExpressGetRoot } = require('./routes/onExpressGetRoot');
 const { onExpressGetMatches } = require('./routes/onExpressGetMatches');
@@ -22,6 +24,7 @@ const client = new DiscordJS.Client({
 // Discord Events, found in ./events/*
 client.on('ready', () => onDiscordReady(client));
 client.on('message', (message) => onDiscordMessage(client, message));
+client.on('messageReactionAdd', (messageReaction, user, client) => onDiscordReactionAdd(messageReaction, user));
 
 // Express Setup
 const app = express();
@@ -36,6 +39,7 @@ app.get('/message', async (req, res) => onExpressGetMessage(req, res, client));
 app.post('/updatePlayer', async (req, res) => onExpressPostUpdatePlayer(req, res, client));
 app.post('/updateMatch', async (req, res) => onExpressPostUpdateMatch(req, res, client));
 app.post('/discordUpdate', async (req, res) => onExpressDiscordPost(req, res, client));
+app.post('/discordUpdateVote', async (req, res) => onExpressPostDiscordVote(req, res, client));
 app.post('/discordMessage', async (req, res) => onExpressPostDiscordMessage(req, res, client));
 
 // HTTP port for our express app

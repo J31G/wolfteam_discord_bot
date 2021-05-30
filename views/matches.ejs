@@ -52,7 +52,10 @@
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= matchDBData.find(matchDB => matchDB.match_id === match.match.id)?.match_time %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.round %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= match.match.state %></span></td>
-                                        <td style="text-align: center;"><button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscord(this)"><span class="fas fa-paper-plane"></span></button></td>
+                                        <td style="text-align: center;">
+                                          <button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscord(this)"><span class="fas fa-paper-plane"></span></button>
+                                          <button type="button" class="btn btn-sm btn-secondary" onclick="sendDiscordVote(this)"><span class="fas fa-poll"></span></button>
+                                        </td>
                                     </tr>
                                     <% }) %>
                                 </tbody>
@@ -98,6 +101,15 @@
         const sendDiscord = (e) => {
           const row = e.parentElement.parentElement;
           $.post('/discordUpdate', { 
+            id: row.id, 
+            player1: row.children[1].id,
+            player2: row.children[3].id,
+            round: row.children[8].children[0].innerText
+          });
+        }
+        const sendDiscordVote = (e) => {
+          const row = e.parentElement.parentElement;
+          $.post('/discordUpdateVote', { 
             id: row.id, 
             player1: row.children[1].id,
             player2: row.children[3].id,

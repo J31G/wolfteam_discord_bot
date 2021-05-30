@@ -23,11 +23,11 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th style="display: none;">Discord ID</th>
+                                        <th>Discord ID</th>
                                         <th>Discord Username</th>
                                         <th>In-Game Name</th>
                                         <th>Login Name</th>
-                                        <th style="display: none;">Participant ID</th>
+                                        <th>Participant ID</th>
                                         <th>Seed</th>
                                         <th>Account</th>
                                         <th>Language</th>
@@ -37,11 +37,11 @@
                                     <% playerData.forEach(player => { %>
                                     <tr>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player._id %></span></th>
-                                        <td style="display: none;" class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_user_id %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_user_id %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.discord_username %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.ingame_name %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.login_name %></span></td>
-                                        <td style="display: none;" class="tabledit-view-mode"><span class="tabledit-span"><%= player.participant_id %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.participant_id %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.seed %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.account %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= player.language %></span></td>
