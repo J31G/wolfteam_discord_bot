@@ -24,7 +24,7 @@ const client = new DiscordJS.Client({
 // Discord Events, found in ./events/*
 client.on('ready', () => onDiscordReady(client));
 client.on('message', (message) => onDiscordMessage(client, message));
-client.on('messageReactionAdd', (messageReaction, user, client) => onDiscordReactionAdd(messageReaction, user));
+client.on('messageReactionAdd', (messageReaction, user) => onDiscordReactionAdd(messageReaction, user));
 
 // Express Setup
 const app = express();
