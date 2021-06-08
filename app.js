@@ -14,6 +14,7 @@ const { onExpressPostDiscordMessage } = require('./routes/onExpressPostDiscordMe
 const { onExpressGetRoot } = require('./routes/onExpressGetRoot');
 const { onExpressGetMatches } = require('./routes/onExpressGetMatches');
 const { onExpressGetMessage } = require('./routes/onExpressGetMessage');
+const { onExpressGetIdiots } = require('./routes/onExpressGetIdiots');
 
 // Discord Client
 const client = new DiscordJS.Client({
@@ -23,7 +24,7 @@ const client = new DiscordJS.Client({
 
 // Discord Events, found in ./events/*
 client.on('ready', () => onDiscordReady(client));
-client.on('message', (message) => onDiscordMessage(client, message));
+client.on('message', async (message) => onDiscordMessage(client, message));
 client.on('messageReactionAdd', (messageReaction, user) => onDiscordReactionAdd(messageReaction, user));
 
 // Express Setup
@@ -36,6 +37,7 @@ app.use(express.json());
 app.get('/', async (req, res) => onExpressGetRoot(req, res));
 app.get('/matches', async (req, res) => onExpressGetMatches(req, res));
 app.get('/message', async (req, res) => onExpressGetMessage(req, res, client));
+app.get('/idiots', async (req, res) => onExpressGetIdiots(req, res));
 app.post('/updatePlayer', async (req, res) => onExpressPostUpdatePlayer(req, res, client));
 app.post('/updateMatch', async (req, res) => onExpressPostUpdateMatch(req, res, client));
 app.post('/discordUpdate', async (req, res) => onExpressDiscordPost(req, res, client));

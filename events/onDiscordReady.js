@@ -1,7 +1,7 @@
 const WOKCommands = require('wokcommands');
 require('dotenv').config();
 
-module.exports.onDiscordReady = (client) => {
+module.exports.onDiscordReady = async (client) => {
   const wokClient = new WOKCommands(client, {
     commandsDir: 'commands',
     del: 3,

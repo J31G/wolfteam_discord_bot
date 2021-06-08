@@ -12,7 +12,7 @@ module.exports.onExpressPostDiscordVote = async (req, res, client) => {
 
   const embed = new Discord.MessageEmbed()
     .setTitle(`[Alpha V2] Round ${req.body.round}`)
-    .setDescription('Below you will find match details for the tournament. Please check these over and let Complain or Big know if any issues.')
+    .setDescription('Below you will find match details for the tournament. To vote, press on either 1 or 2. You can only vote once and the vote cannot be changed.')
     .setColor(3447003)
     .setThumbnail(client.user.avatarURL())
     .addField('Time', `[${matchData.match_time} GMT +2](${timeURL})`, true)

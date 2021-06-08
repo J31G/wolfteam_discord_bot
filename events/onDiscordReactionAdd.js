@@ -13,17 +13,18 @@ module.exports.onDiscordReactionAdd = async (reaction, user) => {
 
   if (voteFound) return;
 
+  const embedMessage = await reaction.message.channel.messages.fetch(reaction.message.id);
+  const playerScore = embedMessage.embeds[0].fields[4].value.split('\n');
+  // eslint-disable-next-line no-return-assign, prefer-destructuring
+  playerScore.forEach((x, i) => playerScore[i] = x.split(':')[0]);
+
   await voteDB.create({
     message_id: reaction.message.id,
     user_id: user.id,
     // eslint-disable-next-line no-underscore-dangle
     vote: reaction._emoji.name,
+    match: `${playerScore[0]} vs ${playerScore[1]}`,
   });
-
-  const embedMessage = await reaction.message.channel.messages.fetch(reaction.message.id);
-  const playerScore = embedMessage.embeds[0].fields[4].value.split('\n');
-  // eslint-disable-next-line no-return-assign, prefer-destructuring
-  playerScore.forEach((x, i) => playerScore[i] = x.split(':')[0]);
 
   const player1Count = await voteDB.countDocuments({ vote: '1️⃣', message_id: reaction.message.id });
   const player2Count = await voteDB.countDocuments({ vote: '2️⃣', message_id: reaction.message.id });

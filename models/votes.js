@@ -13,6 +13,10 @@ const votes = new mongoose.Schema({
     type: String,
     required: true,
   },
+  match: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model('Votes', votes);

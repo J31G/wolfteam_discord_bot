@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WolfTeam Idiots</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+
+    <div class="container mt-100">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>WolfTeam Idiots</h5><span>Below you'll find the Discord users that have used the `@Team Gamigo` tag</span>
+                    </div>
+                    <div class="card-block">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" id="players-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Discord ID</th>
+                                        <th>Discord Username</th>
+                                        <th>Discord Message</th>
+                                        <th>Date/Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% tagData.forEach(user => { %>
+                                    <tr>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user._id %></span></th>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_user_id %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_username %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_message %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.date_time %></span></td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.rawgit.com/BluesatKV/jquery-tabledit/c1759e6c/jquery.tabledit.js"></script>
+    <script>
+      $(document).ready(() => {
+        $('#players-table').Tabledit({
+          url: '/idiots',
+          hideIdentifier: true,
+          escapehtml: true,
+          restoreButton: false,
+          buttons: {
+            edit: {
+              class: 'btn btn-sm btn-secondary',
+              html: '<span class="fa fa-pencil-alt"></span>',
+              action: 'edit',
+            },
+            delete: {
+              class: 'btn btn-sm btn-secondary',
+              html: '<span class="fa fa-trash"></span>',
+              action: 'delete',
+            }
+          },
+          columns: {
+            identifier: [0, 'id'],
+            editable: [
+              [1, 'discordID', 'input'], 
+              [2, 'discordUserName', 'input'], 
+              [3, 'message', 'input'], 
+              [4, 'time-date', 'date'],
+            ]
+          }
+        });
+      });
+  </script>
+</body>
+</html>

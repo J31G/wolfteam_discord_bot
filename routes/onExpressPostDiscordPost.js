@@ -19,7 +19,6 @@ module.exports.onExpressDiscordPost = async (req, res, client) => {
     .addField('Map', matchData.map, true)
     .addField('Players', `${player1.ingame_name} (<@!${player1.discord_user_id}>)\n**vs**\n ${player2.ingame_name} (<@!${player2.discord_user_id}>)`)
     .addField('Event Account In-Game Names', `${player1.account} **vs** ${player2.account}`)
-    .addField('Votes', `${player1.ingame_name}: 0\n${player2.ingame_name}: 0`)
     .addField('Room Name', matchData.room_name, true)
     .addField('Room Pass', matchData.room_password, true)
     .setFooter(`© BigBOT ${year.getFullYear()}`, client.user.avatarURL())
