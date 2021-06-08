@@ -15,5 +15,6 @@ module.exports.onDiscordMessage = async (discordClient, message) => {
       discord_username: message.author.username,
       discord_message: message.content,
     });
+    message.reply('Please only tag Team Gamigo for game emergencies! Continuing to tag the group will result in a ban. \n\nIf you are after game support, please submit a ticket: https://www.aeriagames.com/contact');
   }
 };

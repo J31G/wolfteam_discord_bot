@@ -36,7 +36,7 @@
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_user_id %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_username %></span></td>
                                         <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.discord_message %></span></td>
-                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.date_time %></span></td>
+                                        <td class="tabledit-view-mode"><span class="tabledit-span"><%= user.date_time.toUTCString() %></span></td>
                                     </tr>
                                     <% }) %>
                                 </tbody>
@@ -59,6 +59,8 @@
           hideIdentifier: true,
           escapehtml: true,
           restoreButton: false,
+          deleteButton: false,
+          editButton: false,
           buttons: {
             edit: {
               class: 'btn btn-sm btn-secondary',
