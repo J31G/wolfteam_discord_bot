@@ -4,7 +4,8 @@ const playerDB = require('../models/player');
 require('dotenv').config();
 
 module.exports = {
-  slash: 'both',
+  // slash: 'both',
+  slash: false,
   testOnly: true,
   description: 'Register for the WolfTeam Alpha V2 Tournament',
   expectedArgs: '<in-game name> <login name>',

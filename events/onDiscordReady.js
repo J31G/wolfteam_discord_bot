@@ -17,7 +17,7 @@ module.exports.onDiscordReady = async (client) => {
   wokClient
     .setDefaultPrefix(process.env.DISCORD_PREFIX)
     .setMongoPath(process.env.MONGO_URI)
-    .setBotOwner('333726780118663178')
+    .setBotOwner(['333726780118663178'])
     .setCategorySettings([
       {
         name: 'General',
