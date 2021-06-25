@@ -1,12 +1,12 @@
 const discordTag = require('../models/discordGroupTag');
-// const { languageDetection } = require('../handlers/languageDetectionHandler');
+const { languageDetection } = require('../handlers/languageDetectionHandler');
 
 module.exports.onDiscordMessage = async (discordClient, message) => {
   // Check if message is from a bot (Important to stop loops)
   if (message.author.bot) return;
 
   // Language Detection
-  // languageDetection(message);
+  await languageDetection(message);
 
   // Log user if they use the team gamigo tag
   if (message.content.includes('<@&829731272716189746>')) {

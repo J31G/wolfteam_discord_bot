@@ -15,15 +15,15 @@ module.exports.languageDetection = async (message) => {
       // Load our allowed words from file
       const allowedList = fs
         .readFileSync('./files/allowed_list.txt', 'utf8')
-        .split('\r\n');
+        .split('\n');
 
       // if message contains an allowed word, do not remove it
-      if (!allowedList.some((v) => message.content.toLowerCase().includes(v))) {
-        message.delete();
-        message
-          .reply('not allowed! Turkish is not a supported language for Wolfteam Aeria. Please stick to English, German, or French.')
-          .then((msg) => msg.delete({ timeout: 5000 }));
-      }
+      if (allowedList.some((v) => message.content.toLowerCase().includes(v))) return;
+
+      message.delete();
+      message
+        .reply('not allowed! Turkish is not a supported language for Wolfteam Aeria. Please stick to English, German, or French.')
+        .then((msg) => msg.delete({ timeout: 5000 }));
     }
   } catch (err) {
     // eslint-disable-next-line no-console
