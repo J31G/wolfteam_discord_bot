@@ -1,5 +1,5 @@
 const DetectLanguage = require('detectlanguage');
-const fs = require('fs');
+const allowedList = require('../models/allowList');
 require('dotenv').config();
 
 module.exports.languageDetection = async (message) => {
@@ -12,13 +12,11 @@ module.exports.languageDetection = async (message) => {
 
     // If language is detected and is Turkish
     if (language.length > 0 && language[0].language === 'tr') {
-      // Load our allowed words from file
-      const allowedList = fs
-        .readFileSync('./files/allowed_list.txt', 'utf8')
-        .split('\n');
+      // Get an array of our allowed words from db
+      const allowedWords = await allowedList.find({}, 'word');
 
       // if message contains an allowed word, do not remove it
-      if (allowedList.some((v) => message.content.toLowerCase().includes(v))) return;
+      if (allowedWords.some((w) => message.content.toLowerCase().includes(w.word))) return;
 
       message.delete();
       message
