@@ -20,7 +20,7 @@ module.exports.languageDetection = async (message) => {
 
       message.delete();
       message
-        .reply('not allowed! Turkish is not a supported language for Wolfteam Aeria. Please stick to English, German, or French.')
+        .reply('not allowed! Turkish is not a supported language for Wolfteam Aeria. Please stick to English, German, or French.\n\nIf you are after the Turkish Discord, you can find it here: https://joy.ac/WolfteamDiscord')
         .then((msg) => msg.delete({ timeout: 5000 }));
     }
   } catch (err) {
