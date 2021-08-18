@@ -1,9 +1,13 @@
 const discordTag = require('../models/discordGroupTag');
 const { languageDetection } = require('../handlers/languageDetectionHandler');
+const { bannedURLDetection } = require('../handlers/bannedURLHandler');
 
 module.exports.onDiscordMessage = async (discordClient, message) => {
   // Check if message is from a bot (Important to stop loops)
   if (message.author.bot) return;
+
+  // URL Detection
+  await bannedURLDetection(message);
 
   // Language Detection
   await languageDetection(message);
