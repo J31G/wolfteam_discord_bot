@@ -7,7 +7,7 @@ module.exports.onDiscordMessage = async (discordClient, message) => {
   if (message.author.bot) return;
 
   // URL Detection
-  await bannedURLDetection(message);
+  await bannedURLDetection(message, discordClient);
 
   // Language Detection
   await languageDetection(message);
