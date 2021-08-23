@@ -14,15 +14,18 @@ module.exports.bannedURLDetection = async (message, client) => {
     .then((msg) => msg.delete({ timeout: 5000 }));
 
   /* try {
-    // Give user muted role
+    // Find the WT Discord
     const guild = await client.guilds.cache.get('322328346799243264');
+
+    // Find the muted roles
     const mutedRole = await guild.roles.cache.get('436865404233711616');
     const reactionRole = await guild.roles.cache.get('733015356062302327');
+
+    // Find the user
     const discordUser = await guild.members.fetch(message.author.id);
+
+    // Now give the user the roles
     discordUser.roles.add(mutedRole.id);
     discordUser.roles.add(reactionRole.id);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    // console.error(error);
-  } */
+  } catch (err) { console.error(err); } */
 };
