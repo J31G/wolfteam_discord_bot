@@ -37,8 +37,6 @@ module.exports = {
       .setFooter(`© BigBOT ${new Date().getFullYear()}`, client.user.avatarURL)
       .setTimestamp();
 
-    if (message) return message.reply(embed);
-
-    return embed;
+    return message.reply({ embeds: [embed] });
   },
 };

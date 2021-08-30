@@ -6,14 +6,12 @@ module.exports = {
   description: 'A simple ping pong command!',
   aliases: ['p'],
   category: 'Fun & Games',
-  callback: ({ message }) => {
+  callback: ({ message, interaction }) => {
     const embed = new MessageEmbed()
       .setTitle('Ping Command')
       .setDescription('pong!');
 
-    if (message) {
-      message.reply(embed);
-    }
-    return embed;
+    if (message) return message.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   },
 };

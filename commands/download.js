@@ -8,7 +8,9 @@ module.exports = {
   aliases: ['link'],
   category: 'General',
   cooldown: '60s',
-  callback: ({ message, args, client }) => {
+  callback: ({
+    message, args, client, interaction,
+  }) => {
     if (message) message.delete();
     const year = new Date();
     const user = args[0] || '';
@@ -27,7 +29,7 @@ module.exports = {
       .setFooter(`© BigBOT ${year.getFullYear()}`, client.user.avatarURL)
       .setTimestamp();
 
-    if (message) message.reply(embed);
-    return embed;
+    if (message) return message.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   },
 };

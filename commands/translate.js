@@ -10,7 +10,7 @@ module.exports = {
   maxArgs: 2,
   aliases: ['t'],
   category: 'General',
-  callback: async ({ args, text }) => {
+  callback: async ({ args, text, interaction }) => {
     const userText = text.substr(args[0].length).trim();
     const selectedLanguage = args[0].toUpperCase().trim();
     const data = await translate(userText, selectedLanguage);
@@ -18,6 +18,6 @@ module.exports = {
       .setTitle(`Translation: ${data.detected_source_language} to ${selectedLanguage}`)
       .setDescription(data.text);
 
-    return embed;
+    return interaction.reply({ embeds: [embed] });
   },
 };

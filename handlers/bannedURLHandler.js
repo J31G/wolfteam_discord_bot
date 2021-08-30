@@ -1,6 +1,8 @@
 const bannedURL = require('../models/bannedURL');
 require('dotenv').config();
 
+// TEMP - Until the code below is used:
+// eslint-disable-next-line no-unused-vars
 module.exports.bannedURLDetection = async (message, client) => {
   // Get an array of our banned urls from db
   const bannedURLs = await bannedURL.find({}, 'url');

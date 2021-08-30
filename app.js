@@ -1,4 +1,5 @@
 const DiscordJS = require('discord.js');
+const mongoose = require('mongoose');
 const express = require('express');
 require('dotenv').config();
 
@@ -18,16 +19,31 @@ const { onExpressGetIdiots } = require('./routes/onExpressGetIdiots');
 // const { onExpressGetRoot } = require('./routes/onExpressGetRoot');
 // const { onExpressGetMatches } = require('./routes/onExpressGetMatches');
 
+// Connect to our DB
+mongoose.connect(process.env.MONGO_URI).catch((err) => console.error(err));
+
 // Discord Client
 const client = new DiscordJS.Client({
   partials: ['MESSAGE', 'CHANNEL', 'REACTION'],
   ws: { intents: DiscordJS.Intents.PRIVILEDGED },
+  intents: [
+    DiscordJS.Intents.FLAGS.GUILDS,
+    DiscordJS.Intents.FLAGS.GUILD_MESSAGES,
+    DiscordJS.Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    DiscordJS.Intents.FLAGS.GUILD_INTEGRATIONS,
+    DiscordJS.Intents.FLAGS.GUILD_MEMBERS,
+    DiscordJS.Intents.FLAGS.GUILD_EMOJIS_AND_STICKERS,
+  ],
 });
 
 // Discord Events, found in ./events/*
 client.on('ready', () => onDiscordReady(client));
-client.on('message', async (message) => onDiscordMessage(client, message));
+client.on('messageCreate', async (message) => onDiscordMessage(client, message));
 client.on('messageReactionAdd', (messageReaction, user) => onDiscordReactionAdd(messageReaction, user));
+client.on('interactionCreate', (interaction) => {
+  if (!interaction.isButton()) return;
+  interaction.reply('You pressed my button!');
+});
 
 // Express Setup
 const app = express();

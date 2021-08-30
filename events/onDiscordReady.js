@@ -1,9 +1,10 @@
 const WOKCommands = require('wokcommands');
+const appRoot = require('app-root-path');
 require('dotenv').config();
 
 module.exports.onDiscordReady = async (client) => {
   const wokClient = new WOKCommands(client, {
-    commandsDir: 'commands',
+    commandsDir: `${appRoot}/commands`,
     del: 3,
     testServers: ['825352046605238352', '322328346799243264'],
     dbOptions: {
@@ -34,11 +35,6 @@ module.exports.onDiscordReady = async (client) => {
       {
         name: 'Development',
         emoji: '💻',
-        hidden: true,
-      },
-      {
-        name: 'Configuration',
-        emoji: '⚙',
         hidden: true,
       },
     ]);

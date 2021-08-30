@@ -5,9 +5,13 @@ module.exports = {
   testOnly: true,
   description: 'How to create a ticket and get support on Aeria WolfTeam.',
   expectedArgs: '[language]',
+  minArgs: 0,
+  maxArgs: 1,
   aliases: ['ticket', 'support'],
   category: 'General',
-  callback: async ({ message, client, args }) => {
+  callback: async ({
+    message, client, args, interaction,
+  }) => {
     // Create an embed to display our language message
     const embed = new MessageEmbed()
       .setFooter(`© BigBOT ${new Date().getFullYear()}`, client.user.avatarURL)
@@ -27,8 +31,7 @@ module.exports = {
         .setDescription('Du hast ein Problem mit WolfTeam und brauchst Hilfe? Dann müssen Sie ein Ticket erstellen. Um dies zu tun, [klicken Sie hier](https://support.gamigo.com/hc/de/requests/new?ticket_form_id=360002978513).\n\nBitte füllen Sie alle Felder aus und achten Sie darauf, die richtige Kategorie auszuwählen und die Beschreibung so ausführlich wie möglich zu gestalten. Behalten Sie dann Ihre E-Mails im Auge.\n\nDie Beantwortung von Anfragen dauert in der Regel zwischen 3 und 5 Arbeitstagen, kann aber je nach Jahreszeit, der Anzahl der vor Ihnen liegenden Anfragen und der Komplexität Ihrer Anfrage erheblich variieren. Aus diesem Grund ist es wichtig, dass Sie so viele Details wie möglich angeben.');
     }
 
-    if (message) return message.reply(embed);
-
-    return embed;
+    if (message) return message.reply({ embeds: [embed] });
+    return interaction.reply({ embeds: [embed] });
   },
 };
