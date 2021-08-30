@@ -14,10 +14,10 @@ module.exports.onExpressGetMessage = async (req, res, client) => {
     && password === process.env.BASIC_AUTH_PASSWORD)) return reject();
 
   // AUTH SUCCESS BELOW THIS
-  const { channels } = client.guilds.cache.get('322328346799243264');
+  const { channels } = await client.guilds.cache.get('322328346799243264');
   const channelsData = [];
   channels.cache.forEach((channel) => {
-    if (channel.type === 'text') {
+    if (channel.type === 'GUILD_TEXT') {
       const temp = {
         id: channel.id,
         name: channel.name,

@@ -23,9 +23,13 @@ module.exports.onExpressPostDiscordMessage = async (req, res, client) => {
     .setFooter(`© BigBOT ${year.getFullYear()}`, client.user.avatarURL)
     .setTimestamp();
 
-  if (req.body?.english) client.channels.cache.get(req.body.channel).send(embedEN);
-  if (req.body?.french) client.channels.cache.get(req.body.channel).send(embedFR);
-  if (req.body?.german) client.channels.cache.get(req.body.channel).send(embedDE);
+  try {
+    if (req.body?.english) client.channels.cache.get(req.body.channel).send({ embeds: [embedEN] });
+    if (req.body?.french) client.channels.cache.get(req.body.channel).send({ embeds: [embedFR] });
+    if (req.body?.german) client.channels.cache.get(req.body.channel).send({ embeds: [embedDE] });
+  } catch (err) {
+    console.error(err);
+  }
 
   return res.redirect('/message');
 };
