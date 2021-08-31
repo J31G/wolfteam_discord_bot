@@ -1,3 +1,4 @@
+require('@pm2/io').init({ transactions: true, http: true });
 const DiscordJS = require('discord.js');
 const mongoose = require('mongoose');
 const express = require('express');
