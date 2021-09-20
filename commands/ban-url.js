@@ -4,7 +4,7 @@ module.exports = {
   slash: false,
   testOnly: true,
   description: 'Banned a URL on Discord',
-  aliases: [],
+  aliases: ['ban-link'],
   category: 'General',
   callback: async ({ message, args }) => {
     // Remove command

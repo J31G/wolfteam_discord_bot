@@ -3,17 +3,20 @@ const bannedURL = require('../models/bannedURL');
 require('dotenv').config();
 
 module.exports.bannedURLDetection = async (message, client) => {
+  // If gamemaster, ignore
+  if (await message.member.roles.cache.find((r) => r.name === 'Game Masters')) return;
+
   // Get an array of our banned urls from db
   const bannedURLs = await bannedURL.find({}, 'url');
 
-  // if message contains an banned url, do not remove it
+  // if message do not contains an banned url, do not remove it
   if (!bannedURLs.some((w) => message.content.toLowerCase().includes(w.url))) return;
 
   message
     .reply('That URL has been banned on this server. This has been reported.')
-    .then((msg) => msg.delete({ timeout: 5000 }));
+    .then((msg) => setTimeout(() => msg.delete(), 2500));
 
-  setTimeout(() => message.delete(), 1000);
+  setTimeout(() => message.delete(), 2500);
 
   try {
     // Find the WT Discord

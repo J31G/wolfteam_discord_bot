@@ -5,6 +5,9 @@ module.exports = {
   aliases: ['clear'],
   category: 'General',
   callback: async ({ message, args }) => {
+    // Remove command
+    setTimeout(() => message.delete(), 1000);
+
     if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply('You do not have permission to do that').then((msg) => setTimeout(() => msg.delete(), 3000));
 
     // Get out mentioned user and the amount of messages to delete
