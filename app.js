@@ -11,6 +11,7 @@ const { onDiscordReactionAdd } = require('./events/onDiscordReactionAdd');
 const { onExpressPostDiscordMessage } = require('./routes/onExpressPostDiscordMessage');
 const { onExpressGetMessage } = require('./routes/onExpressGetMessage');
 const { onExpressGetIdiots } = require('./routes/onExpressGetIdiots');
+// const tournamentRouter = require('./routes/tournament');
 
 // Tournament
 // const { onExpressPostUpdatePlayer } = require('./routes/onExpressPostUpdatePlayer');
@@ -64,6 +65,7 @@ app.post('/discordMessage', async (req, res) => onExpressPostDiscordMessage(req,
 // app.post('/updateMatch', async (req, res) => onExpressPostUpdateMatch(req, res, client));
 // app.post('/discordUpdate', async (req, res) => onExpressDiscordPost(req, res, client));
 // app.post('/discordUpdateVote', async (req, res) => onExpressPostDiscordVote(req, res, client));
+// app.use('tournament', tournamentRouter);
 
 // HTTP port for our express app
 app.listen(process.env.PORT || 5000);

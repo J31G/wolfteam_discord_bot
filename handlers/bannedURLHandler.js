@@ -13,7 +13,7 @@ module.exports.bannedURLDetection = async (message, client) => {
     .reply('That URL has been banned on this server. This has been reported.')
     .then((msg) => msg.delete({ timeout: 5000 }));
 
-  message.delete();
+  setTimeout(() => message.delete(), 1000);
 
   try {
     // Find the WT Discord

@@ -8,7 +8,7 @@ module.exports = {
   category: 'General',
   callback: async ({ message, args }) => {
     // Remove command
-    message.delete();
+    setTimeout(() => message.delete(), 1000);
 
     // Check if game master
     if (!message.member.roles.cache.find((r) => r.name === 'Game Masters')) {
