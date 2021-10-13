@@ -40,7 +40,7 @@ module.exports.bannedURLDetection = async (message, client) => {
     const embed = new MessageEmbed()
       .setTitle('User muted: Banned Link')
       .setDescription('The following user has been muted for posted a banned link. More details below.')
-      .addField('Username', `${discordUser} || ${discordUser.nickname}`)
+      .addField('Username', `${discordUser} || ${discordUser?.nickname ? discordUser?.nickname : message?.author?.username}`)
       .addField('Message', message.content)
       .setFooter(`© BigBOT ${new Date().getFullYear()}`, client.user.avatarURL)
       .setTimestamp();
